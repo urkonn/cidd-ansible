@@ -1,0 +1,10 @@
+---
+- hosts: slaveservers
+  user: vagrant
+  sudo: true
+  vars:
+    HOST_IP: 192.168.33.10
+  roles:
+    - docker-install
+    - mesos-slave
+

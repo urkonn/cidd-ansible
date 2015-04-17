@@ -1,0 +1,8 @@
+---
+- name: marathon container
+  docker:
+    name: marathon
+    image: mesosphere/marathon:latest
+    ports:
+      - "8080:8080"
+    command: --master zk://"{{HOST_IP}}":2181/mesos --zk zk://"{{HOST_IP}}":2181/marathon

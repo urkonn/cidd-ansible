@@ -1,0 +1,13 @@
+---
+- hosts: masterservers
+  user: vagrant
+  sudo: true
+  vars:
+    HOST_IP: 192.168.33.10
+  roles:
+    - docker-install
+    - zookeeper
+    - mesos-master
+    - marathon
+    - jenkins
+    - registry

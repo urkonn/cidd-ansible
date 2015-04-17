@@ -1,0 +1,10 @@
+---
+- name: Install Docker
+  apt: pkg={{ item }} state=present update_cache=yes
+  with_items:
+    - git
+    - docker.io
+    - python-pip
+
+- name: Install docker-py
+  pip: name=docker-py version=0.4.0
