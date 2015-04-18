@@ -4,16 +4,16 @@
     name: master
     image: redjack/mesos-master:0.21.0
     hostname: master
-    links:
-      - zookeeper:zookeeper
-    env:
-      - MESOS_HOSTNAME="{HOST_IP}"
-      - MESOS_IP="{{HOST_IP}}"
-      - MESOS_ZK=zk://"{{HOST_IP}}":2181/mesos
-      - MESOS_PORT=5050
-      - MESOS_QUORUM=1
-      - MESOS_REGISTRY=in_memory
-      - MESOS_WORK_DIR=/var/lib/mesos
-      - MESOS_LOG_DIR=/var/log
+    net: host
     ports:
       - "5050:5050"
+    env:
+      MESOS_HOSTNAME="{HOST_IP}"
+      MESOS_IP="{{HOST_IP}}"
+      MESOS_ZK=zk://"{{HOST_IP}}":2181/mesos
+      MESOS_PORT=5050
+      MESOS_QUORUM=1
+      MESOS_REGISTRY=in_memory
+      MESOS_WORK_DIR=/var/lib/mesos
+      MESOS_LOG_DIR=/var/log
+    state: running

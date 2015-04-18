@@ -12,6 +12,10 @@ Vagrant.configure("2") do |config|
     master_config.vm.network :forwarded_port, guest: 8081, host: 8881
     master_config.vm.network :forwarded_port, guest: 5000, host: 5555
     master_config.vm.network :private_network, ip: "192.168.33.10"
+
+    config.vm.provider :virtualbox do |vb|
+      vb.customize ["modifyvm", :id, "--memory", "1024"]
+    end
   
     master_config.vm.provision :ansible do |ansible|
       ansible.playbook = "provisioning/masterservers.yml"
@@ -29,6 +33,10 @@ Vagrant.configure("2") do |config|
     slave_config.vm.network :forwarded_port, guest: 13001, host: 1301
     slave_config.vm.network :forwarded_port, guest: 13002, host: 1302
     slave_config.vm.network :private_network, ip: "192.168.33.30"
+
+    config.vm.provider :virtualbox do |vb|
+      vb.customize ["modifyvm", :id, "--memory", "1024"]
+    end    
   
     slave_config.vm.provision :ansible do |ansible|
       ansible.playbook = "provisioning/slaveservers.yml"
