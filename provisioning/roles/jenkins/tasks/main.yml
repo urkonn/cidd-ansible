@@ -1,4 +1,13 @@
 ---
+- name: copy Dockerfile
+  copy: src=Dockerfile dest=~/Dockerfile force=yes
+
+- name: pull jenkins image
+  command: docker pull jenkins:latest
+
+- name: build jenkins custom image
+  command: sudo docker build -t cedn/jenkins_with_docker .
+  
 - name: jenkins container
   docker:
     name: jenkins
